@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
+import Image from 'next/image'; // Import the Image component from Next.js
 
 interface QRCodeGeneratorProps {
   sessionData: {
@@ -24,9 +25,7 @@ const QRCodeGenerator: React.FC<QRCodeGeneratorProps> = ({ sessionData }) => {
         const generatedAccessCode = Math.random().toString(36).substring(2, 8).toUpperCase();
         setAccessCode(generatedAccessCode);
         const qrCodeUrl = `https://example.com/session?data=${encodeURIComponent(
-          JSON.stringify(sessionData))}
-          &accessCode=${generatedAccessCode}
-        `;
+          JSON.stringify(sessionData))}&accessCode=${generatedAccessCode}`;
         const dataURL = await QRCode.toDataURL(qrCodeUrl);
         setQRCodeDataURL(dataURL);
       } catch (error) {
@@ -40,7 +39,17 @@ const QRCodeGenerator: React.FC<QRCodeGeneratorProps> = ({ sessionData }) => {
   return (
     <div className="flex flex-col items-center space-y-4">
       {qrCodeDataURL && (
-        <><img src={qrCodeDataURL} alt="QR Code" className="w-64 h-64" /><p className="text-2xl pb-3"><strong>QR Access Code:</strong> {accessCode}</p></>
+        <>
+          {/* Use the next/image component for automatic optimization */}
+          <Image 
+            src={qrCodeDataURL} 
+            alt="QR Code" 
+            width={256} 
+            height={256} 
+            className="w-64 h-64" 
+          />
+          <p className="text-2xl pb-3"><strong>QR Access Code:</strong> {accessCode}</p>
+        </>
       )}
       <div className="text-center">
         <p className="mb-2"><strong>Module Code:</strong> {sessionData.moduleCode}</p>

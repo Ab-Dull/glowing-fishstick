@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 import { MessageSquare, BarChart2, UserCheck, Book, HelpCircle, Zap, Users } from 'lucide-react'
 import { Label } from "@/components/ui/label"
 import QRCodeGenerator from './QRCodeGenerator'
